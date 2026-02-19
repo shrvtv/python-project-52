@@ -30,6 +30,10 @@ DEBUG = bool(os.getenv('DEBUG', 'False'))
 
 ALLOWED_HOSTS = ['webserver', '127.0.0.1']
 
+render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if render_host:
+    ALLOWED_HOSTS.append(render_host)
+
 
 # Application definition
 
