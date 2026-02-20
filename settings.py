@@ -40,6 +40,7 @@ render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if render_host:
     ALLOWED_HOSTS.append(render_host)
 
+AUTH_USER_MODEL = 'auth.User'
 
 # Application definition
 
