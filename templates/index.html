@@ -1,0 +1,45 @@
+{% extends 'django_bootstrap5/bootstrap5.html' %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block bootstrap5_title %} Task Tracker {% endblock %}
+{% block bootstrap5_content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ms-3">
+        <a class="navbar-brand" href="/">Task Tracker</a>
+        {% block navbar_content %}
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-expanded="true">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse show" id="navbarToggleExternalContent">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/">Users</a>
+                </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/login/">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/users/create/">Registration</a>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    </nav>
+    {% block content %}
+    <div class="container wrapper flex-grow-1">
+        <h1 class="my-4"></h1>
+        <h1 class="my-4"></h1>
+        <div class="card">
+            <div class="card-body p-5 bg-light">
+                <div class="display-4">Привет от Хекслета!</div>
+                <p class="lead">Практические курсы по программированию</p>
+                <hr>
+                <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">Узнать больше</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+{% endblock %}
