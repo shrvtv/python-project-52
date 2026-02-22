@@ -16,7 +16,7 @@
             {% block navbar_content %}
                 <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/users/">{% translate "Users" %}</a>
+                    <a class="nav-link" href="{% url 'users:list' %}">{% translate "Users" %}</a>
                 </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -24,7 +24,7 @@
                     <a class="nav-link" href="{% url 'login' %}">{% translate "Log In" %}</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/users/create/">{% translate "Registration" %}</a>
+                    <a class="nav-link" href="{% url 'users:create' %}">{% translate "Registration" %}</a>
                     </li>
                 </ul>
             {% endblock %}
