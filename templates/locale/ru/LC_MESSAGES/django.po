@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-21 18:13+0000\n"
+"POT-Creation-Date: 2026-02-22 11:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "Английский"
 msgid "Task Tracker"
 msgstr "Менеджер задач"
 
-#: templates/base.html:19
+#: templates/base.html:19 templates/task_manager/users/list.html:7
 msgid "Users"
 msgstr "Пользователи"
 
@@ -44,14 +44,26 @@ msgstr "Вход"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: templates/index.html:9
+#: templates/index.html:10
 msgid "Hello from Hexlet!"
 msgstr "Привет от Хекслета!"
 
-#: templates/index.html:10
+#: templates/index.html:11
 msgid "Practical programming courses"
 msgstr "Практические курсы по программированию"
 
-#: templates/index.html:12
+#: templates/index.html:13
 msgid "Learn more"
 msgstr "Узнать больше"
+
+#: templates/task_manager/users/list.html:12
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: templates/task_manager/users/list.html:13
+msgid "Full name"
+msgstr "Полное имя"
+
+#: templates/task_manager/users/list.html:14
+msgid "Created at"
+msgstr "Дата создания"
