@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-22 11:41+0000\n"
+"POT-Creation-Date: 2026-02-22 13:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr "Пользователи"
 msgid "Log In"
 msgstr "Вход"
 
-#: templates/base.html:27
+#: templates/base.html:27 templates/task_manager/users/create.html:7
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -56,6 +56,10 @@ msgstr "Практические курсы по программировани�
 msgid "Learn more"
 msgstr "Узнать больше"
 
+#: templates/task_manager/users/create.html:23
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
 #: templates/task_manager/users/list.html:12
 msgid "Username"
 msgstr "Имя пользователя"
@@ -67,3 +71,11 @@ msgstr "Полное имя"
 #: templates/task_manager/users/list.html:14
 msgid "Created at"
 msgstr "Дата создания"
+
+#: templates/task_manager/users/list.html:27
+msgid "Change"
+msgstr "Изменить"
+
+#: templates/task_manager/users/list.html:29
+msgid "Delete"
+msgstr "Удалить"
