@@ -10,6 +10,7 @@ dependencies = [
     "django-bootstrap5>=26.2",
     "gunicorn>=25.1.0",
     "python-dotenv>=1.2.1",
+    "whitenoise>=6.11.0",
 ]
 
 [dependency-groups]
