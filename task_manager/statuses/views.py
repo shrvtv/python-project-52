@@ -1,5 +1,6 @@
 import django.views.generic as views
 import django.contrib.auth.mixins as mixins
+from task_manager.statuses.models import Status
 
 
 class StatusCreateView(
@@ -13,18 +14,18 @@ class StatusDeleteView(
     mixins.LoginRequiredMixin,
     views.DeleteView
 ):
-    pass
+    model = Status
 
 
 class StatusListView(
     mixins.LoginRequiredMixin,
     views.ListView
 ):
-    pass
+    model = Status
 
 
 class StatusUpdateView(
     mixins.LoginRequiredMixin,
     views.UpdateView
 ):
-    pass
+    model = Status
