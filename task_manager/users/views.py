@@ -6,12 +6,6 @@ from django.utils.translation import gettext_lazy
 from task_manager.users.forms import CustomUserCreationForm
 
 
-class UserListView(generic_views.ListView):
-    model = User
-    queryset = User.objects.all()
-    template_name = "task_manager/users/list.html"
-
-
 class UserCreateView(generic_views.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("users:list")
@@ -34,6 +28,12 @@ class UserDeleteView(
 
     def test_func(self):
         return self.get_object() == self.request.user
+
+
+class UserListView(generic_views.ListView):
+    model = User
+    queryset = User.objects.all()
+    template_name = "task_manager/users/list.html"
 
 
 class UserUpdateView(
