@@ -6,14 +6,16 @@ from django.utils.translation import gettext_lazy
 from task_manager.users.forms import CustomUserCreationForm
 
 
-class UserBaseView:
+class UserMixin:
+    model = User
     login_url = reverse_lazy("login")
     def test_func(self):
         return self.get_object() == self.request.user
 
+
 class UserCreateView(
+    UserMixin,
     generic_views.CreateView,
-    UserBaseView,
     ):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("users:list")
@@ -25,32 +27,29 @@ class UserCreateView(
 
 
 class UserDeleteView(
-    generic_views.DeleteView,
-    UserBaseView,
+    UserMixin,
     mixins.LoginRequiredMixin,
     mixins.UserPassesTestMixin,
+    generic_views.DeleteView,
 ):
-    model = User
     success_url = reverse_lazy("index")
     template_name = "task_manager/users/delete.html"
 
 
 class UserListView(
+    UserMixin,
     generic_views.ListView,
-    UserBaseView,
     ):
-    model = User
     success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/list.html"
 
 
 class UserUpdateView(
-    generic_views.UpdateView,
-    UserBaseView,
+    UserMixin,
     mixins.LoginRequiredMixin,
     mixins.UserPassesTestMixin,
+    generic_views.UpdateView,
 ):
-    model = User
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/form.html"
