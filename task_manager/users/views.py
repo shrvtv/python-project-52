@@ -7,16 +7,15 @@ from task_manager.users.forms import CustomUserCreationForm
 
 
 class UserBaseView:
-    model = User
-    form_class = CustomUserCreationForm
     login_url = reverse_lazy("login")
     def test_func(self):
         return self.get_object() == self.request.user
 
 class UserCreateView(
+    generic_views.CreateView,
     UserBaseView,
-    generic_views.CreateView
     ):
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/form.html"
     extra_context = {
@@ -26,34 +25,36 @@ class UserCreateView(
 
 
 class UserDeleteView(
+    generic_views.DeleteView,
+    UserBaseView,
     mixins.LoginRequiredMixin,
     mixins.UserPassesTestMixin,
-    UserBaseView,
-    generic_views.DeleteView
 ):
+    model = User
     success_url = reverse_lazy("index")
     template_name = "task_manager/users/delete.html"
 
 
 class UserListView(
+    generic_views.ListView,
     UserBaseView,
-    generic_views.ListView
     ):
-    queryset = User.objects.all()
+    model = User
     success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/list.html"
 
 
 class UserUpdateView(
+    generic_views.UpdateView,
+    UserBaseView,
     mixins.LoginRequiredMixin,
     mixins.UserPassesTestMixin,
-    UserBaseView,
-    generic_views.UpdateView
 ):
+    model = User
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/form.html"
     extra_context = {
         "header": gettext_lazy("Edit user"),
         "submit_button_label": gettext_lazy("Modify")
         }
-    
