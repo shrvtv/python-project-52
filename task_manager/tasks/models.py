@@ -10,6 +10,7 @@ class Task(models.Model):
         on_delete=models.RESTRICT,
         related_name="tasks_assigned"
     )
+    description = models.TextField(blank=True, null=True)
     author = models.ForeignKey(
         User,
         on_delete=models.RESTRICT,
@@ -18,6 +19,7 @@ class Task(models.Model):
     executor = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
+        blank=True,
         null=True,
         related_name="tasks_executing"
     )

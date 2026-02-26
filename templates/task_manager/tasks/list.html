@@ -9,7 +9,7 @@
     <a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}" role="button">{% translate 'Create task' %}</a>
     <div class="card mb-3">
         <div class="card-body bg-light">
-            <form class="form-inline center" method="get">
+            <form class="center" method="get">
                 <div class="mb-3">
                     <label class="form-label" for="id_status">{% translate 'Status' %}</label>
                     <select name="status" class="form-select ml-2 mr-3" id="id_status">
@@ -24,7 +24,7 @@
                     <select name="executor" class="form-select mr-3 ml-2" id="id_executor">
                         <option value="" selected="">---------</option>
                         {% for user in users %}
-                        <option value="{{user.pk}}">{{user.get_full_name}}</option>
+                            <option value="{{user.pk}}">{{user.get_full_name}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -55,22 +55,26 @@
         </tr>
     </thead>
     <tbody>
-        {% for task in tasks %}
-        <tr>
-        <td>{{ task.pk }}</td>
-        <td>
-            <a href="{% url 'tasks:view' task.pk %}">{{ task.name }}</a>
-        </td>
-        <td>!!!!</td>
-        <td>{{ author.get_full_name }}</td>
-        <td>{{ executor.get_full_name }}</td>
-        <td>{{ task.created_at }}</td>
-        <td>
-            <a href="{% url 'tasks:update' task.pk %}">{ %translate 'Edit' %}</a>
-            <br>
-            <a href="{% url 'tasks:delete' task.pk %}">{% translate 'Delete' %}</a>
-        </td>
-        </tr>
+        {% for task in task_list %}
+            <tr>
+            <td>{{ task.pk }}</td>
+            <td>
+                <a href="{% url 'tasks:view' task.pk %}">{{ task.name }}</a>
+            </td>
+            <td>{{ task.status.name }}</td>
+            <td>{{ task.author.get_full_name }}</td>
+            <td>
+                {% if task.executor %}
+                    {{ task.executor.get_full_name }}
+                {% endif %}
+            </td>
+            <td>{{ task.created_at }}</td>
+            <td>
+                <a href="{% url 'tasks:update' task.pk %}">{% translate 'Edit' %}</a>
+                <br>
+                <a href="{% url 'tasks:delete' task.pk %}">{% translate 'Delete' %}</a>
+            </td>
+            </tr>
         {% endfor %}
     </tbody>
     </table>
