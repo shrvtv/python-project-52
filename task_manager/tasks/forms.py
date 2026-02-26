@@ -16,7 +16,17 @@ class TaskFilterForm(forms.Form):
         required=False,
         empty_label="---------"
     )
+    # for selectors 
+    # for checkbox 
     self_tasks = forms.BooleanField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            if name == "self_tasks":
+                field.widget.attrs['class'] = "form-check-input mr-3"
+            else:
+                field.widget.attrs['class'] = "form-select ml-2 mr-3"
 
 
 class TaskCreationForm(forms.ModelForm):

@@ -2,9 +2,7 @@ import django.views.generic as generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from task_manager.tasks.models import Task
-from django.contrib.auth.models import User
-from task_manager.statuses.models import Status
-from task_manager.tasks.forms import TaskCreationForm
+from task_manager.tasks.forms import TaskCreationForm, TaskFilterForm
 
 
 class TaskMixin(LoginRequiredMixin):
@@ -16,12 +14,28 @@ class TaskListView(
     TaskMixin,
     generic.ListView
 ):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["statuses"] = Status.objects.all()
-        context["users"] = User.objects.all()
-        return context
     template_name = "task_manager/tasks/list.html"
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data["form"] = TaskFilterForm({
+            "status": self.request.GET.get("status"),
+            "executor": self.request.GET.get("executor"),
+            "self_tasks": self.request.GET.get("self_tasks")
+        })
+        return data
+
+    def get_queryset(self):
+        tasks = Task.objects.all()
+        if self.request.GET.get("self_tasks"):
+            tasks = tasks.filter(author_id=self.request.user.pk)
+        status_id = self.request.GET.get("status")
+        if status_id:
+            tasks = tasks.filter(status_id=status_id)
+        executor_id = self.request.GET.get("executor")
+        if executor_id:
+            tasks = tasks.filter(executor_id=executor_id)
+        return tasks
 
 
 class TaskDetailView(generic.DetailView):
