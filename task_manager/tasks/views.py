@@ -5,6 +5,10 @@ class TaskListView(generic.ListView):
     pass
 
 
+class TaskDetailView(generic.DetailView):
+    pass
+
+
 class TaskCreateView(generic.CreateView):
     pass
 
