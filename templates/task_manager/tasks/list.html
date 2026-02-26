@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">Задачи</h1>
+    <a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}" role="button">{% translate 'Create task' %}</a>
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <form class="form-inline center" method="get">
+                <div class="mb-3">
+                    <label class="form-label" for="id_status">{% translate 'Status' %}</label>
+                    <select name="status" class="form-select ml-2 mr-3" id="id_status">
+                        <option value="" selected="">---------</option>
+                        {% for status in statuses %}
+                        <option value="{{status.pk}}">{{status.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_executor">{% translate 'Executor' %}</label>
+                    <select name="executor" class="form-select mr-3 ml-2" id="id_executor">
+                        <option value="" selected="">---------</option>
+                        {% for user in users %}
+                        <option value="{{user.pk}}">{{user.get_full_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_label">Метка</label>
+                    <select name="label" class="form-select mr-3 ml-2" id="id_label">
+                        <option value="" selected="">---------</option>
+                    </select></div>
+                <div class="mb-3">
+                    <div class="form-check"><input type="checkbox" name="self_tasks" class="form-check-input mr-3" id="id_self_tasks">
+                        <label class="form-check-label" for="id_self_tasks">Только свои задачи</label>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Показать">
+            </form>
+        </div>
+    </div>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>{% translate 'Name' %}</th>
+        <th>{% translate 'Status' %}</th>
+        <th>{% translate 'Author' %}</th>
+        <th>{% translate 'Executor' %}</th>
+        <th>{% translate 'Creation date' %}</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+        <td>{{ task.pk }}</td>
+        <td>
+            <a href="{% url 'tasks:view' task.pk %}">{{ task.name }}</a>
+        </td>
+        <td>!!!!</td>
+        <td>{{ author.get_full_name }}</td>
+        <td>{{ executor.get_full_name }}</td>
+        <td>{{ task.created_at }}</td>
+        <td>
+            <a href="{% url 'tasks:update' task.pk %}">{ %translate 'Edit' %}</a>
+            <br>
+            <a href="{% url 'tasks:delete' task.pk %}">{% translate 'Delete' %}</a>
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}

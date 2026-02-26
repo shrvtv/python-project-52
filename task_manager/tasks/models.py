@@ -8,7 +8,7 @@ class Task(models.Model):
     status = models.ForeignKey(
         Status,
         on_delete=models.RESTRICT,
-        related_name="status"
+        related_name="tasks_assigned"
     )
     author = models.ForeignKey(
         User,
@@ -18,5 +18,6 @@ class Task(models.Model):
     executor = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
+        null=True,
         related_name="tasks_executing"
     )
