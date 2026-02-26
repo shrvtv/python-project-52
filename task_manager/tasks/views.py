@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from task_manager.tasks.models import Task
 from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
+from task_manager.tasks.forms import TaskCreationForm
 
 
 class TaskMixin(LoginRequiredMixin):
@@ -28,7 +29,12 @@ class TaskDetailView(generic.DetailView):
 
 
 class TaskCreateView(generic.CreateView):
-    pass
+    form_class = TaskCreationForm
+    success_url = reverse_lazy("tasks:list")
+    template_name = "task_manager/tasks/form.html"
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class TaskUpdateView(generic.UpdateView):
