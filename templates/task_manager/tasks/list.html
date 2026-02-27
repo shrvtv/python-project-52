@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+
+{% block header %}{% translate 'Tasks' %}{% endblock %}
 {% block content %}
-
-
-<div class="container wrapper flex-grow-1">
-    <h1 class="my-4">Задачи</h1>
     <a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}" role="button">{% translate 'Create task' %}</a>
     <div class="card mb-3">
         <div class="card-body bg-light">
@@ -16,7 +14,7 @@
                         {{ field }}
                     </div>
                 {% endfor %}
-                <input class="btn btn-primary" type="submit" value="Показать">
+                <input class="btn btn-primary" type="submit" value="{% translate 'Show' %}">
             </form>
         </div>
     </div>
@@ -56,6 +54,4 @@
         {% endfor %}
     </tbody>
     </table>
-</div>
-
 {% endblock %}

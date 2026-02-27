@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+
+{% block header %}{% translate 'Status deletion' %}{% endblock %}
 {% block content %}
-    <div class="container wrapper flex-grow-1">
-        <h1 class="my-4">{% translate 'Status deletion' %}</h1>
-        <p>{% translate 'Are you sure, that you want to delete ' %} {{ object.name }}?</p>
-        <form method="post">
-            {% csrf_token %}
-            <input class="btn btn-danger" type="submit" value="{% translate 'Yes, delete' %}">
-        </form>
-    </div>
+    <p>
+        {% blocktranslate with status_name=object.name %}
+        Are you sure, that you want to delete {{ status_name }}?
+        {% endblocktranslate %}
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="{% translate 'Yes, delete' %}">
+    </form>
 {% endblock %}

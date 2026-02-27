@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block content %}
 
-<div class="container wrapper flex-grow-1">
-    <h1 class="my-4">{% translate 'Users' %}</h1>
+{% block header %}{% translate 'Users' %}{% endblock %}
+{% block content %}
     <table class="table table-striped">
     <thead>
         <tr>
@@ -32,5 +31,4 @@
         {% endfor %}
     </tbody>
     </table>
-</div>
 {% endblock %}
