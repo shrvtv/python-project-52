@@ -32,8 +32,7 @@ class LabelListView(
     LabelMixin,
     views.ListView,
 ):
-    #template_name = "task_manager/labels/list.html"
-    pass
+    template_name = "task_manager/labels/list.html"
 
 
 class LabelUpdateView(
@@ -52,5 +51,4 @@ class LabelDeleteView(
     LabelMixin,
     views.DeleteView,
 ):
-    #template_name = "task_manager/labels/delete.html"
-    pass
+    template_name = "task_manager/labels/delete.html"
