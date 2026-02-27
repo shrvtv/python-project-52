@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
-  <h1 class="my-4">{% translate 'Create task' %}</h1>
+  <h1 class="my-4">{{ header }}</h1>
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -25,7 +25,7 @@
         <option value="1">Метка</option>
       </select>
     </div>
-    <input class="btn btn-primary" type="submit" value="Создать">
+    <input class="btn btn-primary" type="submit" value="{{ submit_button_label }}">
   </form>
 </div>
 

@@ -1,13 +1,15 @@
 import django.views.generic as generic
-from django.contrib.auth.mixins import LoginRequiredMixin
+import django.contrib.auth.mixins as auth_mixins
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskCreationForm, TaskFilterForm
 
 
-class TaskMixin(LoginRequiredMixin):
+class TaskMixin(auth_mixins.LoginRequiredMixin):
     model = Task
     login_url = reverse_lazy("login")
+    success_url = reverse_lazy("tasks:list")
 
 
 class TaskListView(
@@ -42,18 +44,38 @@ class TaskDetailView(generic.DetailView):
     pass
 
 
-class TaskCreateView(generic.CreateView):
+class TaskCreateView(
+    TaskMixin,
+    generic.CreateView):
     form_class = TaskCreationForm
-    success_url = reverse_lazy("tasks:list")
     template_name = "task_manager/tasks/form.html"
+    extra_context = {
+        "header": gettext_lazy("Create task"),
+        "submit_button_label": gettext_lazy("Create")
+    }
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class TaskUpdateView(generic.UpdateView):
-    pass
+class TaskUpdateView(
+    TaskMixin,
+    generic.UpdateView
+    ):
+    form_class = TaskCreationForm
+    template_name = "task_manager/tasks/form.html"
+    extra_context = {
+        "header": gettext_lazy("Edit task"),
+        "submit_button_label": gettext_lazy("Edit")
+    }
+    
 
 
-class TaskDeleteView(generic.DeleteView):
-    pass
+class TaskDeleteView(
+    TaskMixin,
+    auth_mixins.UserPassesTestMixin,
+    generic.DeleteView
+):
+    template_name = "task_manager/tasks/delete.html"
+    def test_func(self):
+        return self.get_object().author == self.request.user
