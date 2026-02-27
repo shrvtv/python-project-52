@@ -40,8 +40,11 @@ class TaskListView(
         return tasks
 
 
-class TaskDetailView(generic.DetailView):
-    pass
+class TaskDetailView(
+    TaskMixin,
+    generic.DetailView
+):
+    template_name = "task_manager/tasks/detail.html"
 
 
 class TaskCreateView(
