@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from task_manager.labels.models import Label
 
 
-class StatusViewTestCase(TestCase):
+class LabelViewTestCase(TestCase):
     def create_label(self):
         return Label.objects.create(
             name="testlabel1",
