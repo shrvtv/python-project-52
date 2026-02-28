@@ -21,7 +21,6 @@ load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv('DEBUG', 'False'))
 
 LANGUAGE_CODE = 'en'
@@ -37,7 +36,7 @@ LANGUAGES = [
 
 ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'localhost']
 
-render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+render_host = os.getenv("RENDER_EXTERNAL_HOSTNAME")
 if render_host:
     ALLOWED_HOSTS.append(render_host)
 
@@ -47,6 +46,13 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+ROLLBAR = {
+    'access_token': os.getenv("ROLLBAR_TOKEN"),
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
 }
 
 # Application definition
@@ -75,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
