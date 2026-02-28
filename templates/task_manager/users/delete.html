@@ -5,8 +5,8 @@
 {% block header %}{% translate 'User deletion' %}{% endblock %}
 {% block content %}
     <p>
-        {% blocktranslate with name=object.get_full_name %}
-        Are you sure, that you want to delete {{ name }}?
+        {% blocktranslate trimmed with name=object.get_full_name %}
+        Are you sure you want to delete {{ name }}?
         {% endblocktranslate %}
     </p>
     <form method="post">

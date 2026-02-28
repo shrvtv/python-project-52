@@ -5,8 +5,8 @@
 {% block header %}{% translate 'Label deletion' %}{% endblock %}
 {% block content %}
     <p>
-        {% blocktranslate with label_name=object.name %}
-        Are you sure, that you want to delete {{ label_name }}?
+        {% blocktranslate trimmed with name=object.name %}
+        Are you sure you want to delete {{ name }}?
         {% endblocktranslate %}
     </p>
     <form method="post">

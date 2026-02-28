@@ -1,14 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-28 14:03+0000\n"
+"POT-Creation-Date: 2026-02-28 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +17,10 @@ msgstr ""
 #: settings.py:34
 msgid "Russian"
 msgstr "Русский"
+
+#: settings.py:35
+msgid "English"
+msgstr "Английский"
 
 #: task_manager/labels/views.py:26 templates/task_manager/labels/list.html:7
 msgid "Create label"
@@ -136,12 +134,12 @@ msgid "Label deletion"
 msgstr "Удаление метки"
 
 #: templates/task_manager/labels/delete.html:8
+#: templates/task_manager/statuses/delete.html:8
+#: templates/task_manager/tasks/delete.html:8
+#: templates/task_manager/users/delete.html:8
 #, python-format
-msgid ""
-"\n"
-"        Are you sure, that you want to delete %(label_name)s?\n"
-"        "
-msgstr ""
+msgid "Are you sure you want to delete %(name)s?"
+msgstr "Вы уверены, что хотите удалить %(name)s?"
 
 #: templates/task_manager/labels/delete.html:14
 #: templates/task_manager/statuses/delete.html:14
@@ -182,25 +180,9 @@ msgstr "Удалить"
 msgid "Status deletion"
 msgstr "Удаление статуса"
 
-#: templates/task_manager/statuses/delete.html:8
-#, python-format
-msgid ""
-"\n"
-"        Are you sure, that you want to delete %(status_name)s?\n"
-"        "
-msgstr ""
-
 #: templates/task_manager/tasks/delete.html:5
 msgid "Task deletion"
 msgstr "Удаление задачи"
-
-#: templates/task_manager/tasks/delete.html:8
-#, python-format
-msgid ""
-"\n"
-"        Are you sure, that you want to delete %(task_name)s?\n"
-"        "
-msgstr ""
 
 #: templates/task_manager/tasks/detail.html:5
 msgid "Task view"
@@ -223,14 +205,6 @@ msgstr "Показать"
 msgid "User deletion"
 msgstr "Удаление пользователя"
 
-#: templates/task_manager/users/delete.html:8
-#, python-format
-msgid ""
-"\n"
-"        Are you sure, that you want to delete %(name)s?\n"
-"        "
-msgstr ""
-
 #: templates/task_manager/users/list.html:11
 msgid "Username"
 msgstr "Имя пользователя"
@@ -238,6 +212,3 @@ msgstr "Имя пользователя"
 #: templates/task_manager/users/list.html:12
 msgid "Full name"
 msgstr "Полное имя"
-
-#~ msgid "English"
-#~ msgstr "Английский"
