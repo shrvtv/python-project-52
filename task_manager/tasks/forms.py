@@ -10,18 +10,24 @@ class TaskFilterForm(forms.Form):
     status = forms.ModelChoiceField(
         queryset=Status.objects.all(),
         required=False,
-        empty_label="---------"
+        empty_label="---------",
+        label=gettext("Status")
     )
     executor = forms.ModelChoiceField(
         queryset=User.objects.all(),
         required=False,
-        empty_label="---------"
+        empty_label="---------",
+        label=gettext("Executor")
     )
     labels = forms.ModelMultipleChoiceField(
         queryset=Label.objects.all(),
-        required=False
+        required=False,
+        label=gettext("Labels")
     )
-    self_tasks = forms.BooleanField(required=False)
+    self_tasks = forms.BooleanField(
+        required=False,
+        label=gettext("Only my tasks")
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
