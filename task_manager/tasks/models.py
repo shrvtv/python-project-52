@@ -25,7 +25,7 @@ class Task(models.Model):
     )
     executor = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         blank=True,
         null=True,
         related_name="tasks_executing",
