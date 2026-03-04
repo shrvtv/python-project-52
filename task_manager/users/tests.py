@@ -1,23 +1,18 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 
+User = get_user_model()
+
+
 class UserViewTestCase(TestCase):
-    def create_users(self):
-        self.user1 = User.objects.create_user(
-            username="testuser1", 
-            first_name="John", 
-            last_name="Doe",
-            password="testpassword1",
-        )
-        self.user2 = User.objects.create_user(
-            username="testuser2",
-            first_name="Jane",
-            last_name="Smith",
-            password="testpassword2",
-        )
+    fixtures = ["users.json"]
     
+    def setUp(self):
+        self.user1 = User.objects.get(pk=1)
+        self.user2 = User.objects.get(pk=2)
+
     def login_as_user1(self):
         self.client.login(
             username=self.user1.username, password="testpassword1"
@@ -26,7 +21,7 @@ class UserViewTestCase(TestCase):
 
 class UserListViewTests(UserViewTestCase):
     def setUp(self):
-        self.create_users()
+        super().setUp()
         self.response = self.client.get(reverse("users:list"))
 
     def test_url_exists(self):
@@ -44,6 +39,7 @@ class UserListViewTests(UserViewTestCase):
 
 class UserCreateViewTests(UserViewTestCase):
     def setUp(self):
+        super().setUp()
         self.url = reverse("users:create")
         self.response_get = self.client.get(self.url)
 
@@ -63,33 +59,33 @@ class UserCreateViewTests(UserViewTestCase):
 
     def test_can_create_user(self):
         valid_form_data = {
-            "username": "testuser1",
-            "first_name": "John",
-            "last_name": "Doe",
-            "password1": "testpassword1",
-            "password2": "testpassword1",
+            "username": "testuser3",
+            "first_name": "Mary",
+            "last_name": "Sue",
+            "password1": "testpassword3",
+            "password2": "testpassword3",
         }
         response = self.client.post(self.url, valid_form_data)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("users:list"))
-        self.assertTrue(User.objects.filter(username="testuser1").exists())
+        self.assertTrue(User.objects.filter(username="testuser3").exists())
 
     def test_password_validation_works(self):
         invalid_form_data = {
-            "username": "testuser1",
-            "first_name": "John",
-            "last_name": "Doe",
+            "username": "testuser3",
+            "first_name": "Mary",
+            "last_name": "Sue",
             "password1": "",
             "password2": "",
         }
         response = self.client.post(self.url, invalid_form_data)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(User.objects.filter(username="testuser1").exists())
+        self.assertFalse(User.objects.filter(username="testuser3").exists())
 
 
 class UserUpdateViewTests(UserViewTestCase):
     def setUp(self):
-        self.create_users()
+        super().setUp()
         self.url = reverse("users:update", kwargs={"pk": self.user1.pk})
 
     def test_login_required(self):
@@ -133,7 +129,7 @@ class UserUpdateViewTests(UserViewTestCase):
         self.assertRedirects(response, reverse("users:list"))
 
     def test_user_can_update_only_self(self):
-        self.client.login(username="testuser1", password="testpassword1")
+        self.login_as_user1()
         url = reverse("users:update", kwargs={"pk": self.user2.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 403)
@@ -141,33 +137,32 @@ class UserUpdateViewTests(UserViewTestCase):
 
 class UserDeleteViewTests(UserViewTestCase):
     def setUp(self):
-        self.create_users()
-        self.user_url = reverse(
+        super().setUp()
+        self.user1_delete_url = reverse(
             "users:delete", kwargs={"pk": self.user1.pk}
         )
-        self.user_pk = self.user1.pk
-        self.other_user_url = reverse(
+        self.user2_delete_url = reverse(
             "users:delete", kwargs={"pk": self.user2.pk}
         )
 
     def test_login_required(self):
-        response = self.client.get(self.user_url)
+        response = self.client.get(self.user1_delete_url)
         self.assertEqual(response.status_code, 302)
         self.assertIn("login", response.url)
 
     def test_view_uses_correct_template(self):
         self.login_as_user1()
-        response = self.client.get(self.user_url)
+        response = self.client.get(self.user1_delete_url)
         self.assertTemplateUsed(response, "task_manager/users/delete.html")
 
     def test_can_delete_user(self):
         self.login_as_user1()
-        response = self.client.post(self.user_url)
+        response = self.client.post(self.user1_delete_url)
         self.assertEqual(response.status_code, 302)
-        self.assertFalse(User.objects.filter(pk=self.user_pk).exists())
+        self.assertFalse(User.objects.filter(pk=self.user1.pk).exists())
         self.assertRedirects(response, reverse("index"))
 
     def test_user_can_delete_only_self(self):
         self.login_as_user1()
-        response = self.client.get(self.other_user_url)
+        response = self.client.get(self.user2_delete_url)
         self.assertEqual(response.status_code, 403)
