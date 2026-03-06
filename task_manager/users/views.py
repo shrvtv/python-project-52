@@ -18,7 +18,7 @@ class UserCreateView(
     generic_views.CreateView,
     ):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy("users:list")
+    success_url = reverse_lazy("login")
     template_name = "task_manager/users/form.html"
     extra_context = {
         "header": gettext_lazy("Registration"),
@@ -51,7 +51,7 @@ class UserUpdateView(
     generic_views.UpdateView,
 ):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy("users:list")
+    success_url = reverse_lazy("login")
     template_name = "task_manager/users/form.html"
     extra_context = {
         "header": gettext_lazy("Edit user"),
