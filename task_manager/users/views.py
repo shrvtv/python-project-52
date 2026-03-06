@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 import django.contrib.auth.mixins as mixins
 from django.utils.translation import gettext_lazy
+from django.contrib import messages
 from task_manager.users.forms import CustomUserCreationForm
 
 
@@ -24,6 +25,12 @@ class UserCreateView(
         "header": gettext_lazy("Registration"),
         "submit_button_label": gettext_lazy("Sign up")
     }
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(
+            self.request, gettext_lazy("User successfully registered")
+        )
+        return response
 
 
 class UserDeleteView(

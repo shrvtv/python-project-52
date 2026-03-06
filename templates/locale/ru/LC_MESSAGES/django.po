@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 11:34+0000\n"
+"POT-Creation-Date: 2026-03-06 12:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,21 +77,29 @@ msgstr "Создание задачи"
 msgid "Edit task"
 msgstr "Изменение задачи"
 
-#: task_manager/users/views.py:24 templates/base.html:43
+#: task_manager/users/views.py:25 templates/base.html:43
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/users/views.py:25
+#: task_manager/users/views.py:26
 msgid "Sign up"
 msgstr "Зарегистрироваться"
 
-#: task_manager/users/views.py:57
+#: task_manager/users/views.py:31
+msgid "User successfully registered"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/users/views.py:64
 msgid "Edit user"
 msgstr "Изменение пользователя"
 
-#: task_manager/users/views.py:58
+#: task_manager/users/views.py:65
 msgid "Modify"
 msgstr "Изменить"
+
+#: task_manager/views.py:21
+msgid "You are logged in"
+msgstr "Вы залогинены"
 
 #: templates/base.html:11
 msgid "Task Tracker"
@@ -113,7 +121,7 @@ msgstr "Задачи"
 msgid "Log out"
 msgstr "Выход"
 
-#: templates/base.html:40 templates/login.html:18
+#: templates/base.html:40 templates/login.html:16 templates/login.html:28
 msgid "Log in"
 msgstr "Вход"
 
