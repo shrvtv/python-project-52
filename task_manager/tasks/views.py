@@ -1,6 +1,7 @@
 import django.views.generic as generic
 import django.contrib.auth.mixins as auth_mixins
 from django.urls import reverse_lazy
+from django.contrib import messages
 from django.utils.translation import gettext_lazy
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskCreationForm, TaskFilterForm
@@ -58,7 +59,11 @@ class TaskCreateView(
     }
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        messages.success(
+            self.request, gettext_lazy("User successfully registered")
+        )
+        return response
 
 
 class TaskUpdateView(

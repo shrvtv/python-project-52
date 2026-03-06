@@ -4,6 +4,7 @@ from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusCreationForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
+from django.contrib import messages
 
 app_label = "statuses"
 
@@ -25,6 +26,12 @@ class StatusCreateView(
         "header": gettext_lazy("Create status"),
         "submit_button_label": gettext_lazy("Create")
     }
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(
+            self.request, gettext_lazy("Status successfully created")
+        )
+        return response
 
 
 class StatusDeleteView(

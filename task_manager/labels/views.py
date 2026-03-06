@@ -4,6 +4,7 @@ from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelCreationForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
+from django.contrib import messages
 
 
 app_label = "labels"
@@ -26,6 +27,12 @@ class LabelCreateView(
         "header": gettext_lazy("Create label"),
         "submit_button_label": gettext_lazy("Create")
     }
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(
+            self.request, gettext_lazy("Label successfully created")
+        )
+        return response
 
 
 class LabelListView(
