@@ -6,7 +6,7 @@ from task_manager.labels.models import Label
 
 class TaskLabel(models.Model):
     task = models.ForeignKey("Task", on_delete=models.CASCADE)
-    label = models.ForeignKey(Label, on_delete=models.RESTRICT)
+    label = models.ForeignKey(Label, on_delete=models.PROTECT)
 
 
 class Task(models.Model):
@@ -14,18 +14,18 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.ForeignKey(
         Status,
-        on_delete=models.RESTRICT,
+        on_delete=models.PROTECT,
         related_name="tasks_assigned",
     )
     description = models.TextField(blank=True, null=True)
     author = models.ForeignKey(
         User,
-        on_delete=models.RESTRICT,
+        on_delete=models.PROTECT,
         related_name="tasks_authored",
     )
     executor = models.ForeignKey(
         User,
-        on_delete=models.RESTRICT,
+        on_delete=models.PROTECT,
         blank=True,
         null=True,
         related_name="tasks_executing",
