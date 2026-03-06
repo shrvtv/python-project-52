@@ -1,7 +1,6 @@
 .env
 *.sqlite*
 staticfiles/
-*.mo
 
 # Python-generated files
 __pycache__/
