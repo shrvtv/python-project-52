@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 12:53+0000\n"
+"POT-Creation-Date: 2026-03-07 08:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,31 +22,43 @@ msgstr "Русский"
 msgid "English"
 msgstr "Английский"
 
-#: task_manager/labels/views.py:26 templates/task_manager/labels/list.html:7
+#: task_manager/labels/views.py:27 templates/task_manager/labels/list.html:7
 msgid "Create label"
 msgstr "Создание метки"
 
-#: task_manager/labels/views.py:27 task_manager/statuses/views.py:26
-#: task_manager/tasks/views.py:57
+#: task_manager/labels/views.py:28 task_manager/statuses/views.py:27
+#: task_manager/tasks/views.py:58
 msgid "Create"
 msgstr "Создать"
 
-#: task_manager/labels/views.py:45
+#: task_manager/labels/views.py:33
+#, fuzzy
+#| msgid "User successfully registered"
+msgid "Label successfully created"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/labels/views.py:52
 msgid "Edit label"
 msgstr "Изменение метки"
 
-#: task_manager/labels/views.py:46 task_manager/statuses/views.py:52
-#: task_manager/tasks/views.py:72 templates/task_manager/tasks/detail.html:44
+#: task_manager/labels/views.py:53 task_manager/statuses/views.py:59
+#: task_manager/tasks/views.py:77 templates/task_manager/tasks/detail.html:44
 #: templates/task_manager/tasks/list.html:49
 msgid "Edit"
 msgstr "Изменить"
 
-#: task_manager/statuses/views.py:25
+#: task_manager/statuses/views.py:26
 #: templates/task_manager/statuses/list.html:7
 msgid "Create status"
 msgstr "Создание статуса"
 
-#: task_manager/statuses/views.py:51
+#: task_manager/statuses/views.py:32
+#, fuzzy
+#| msgid "User successfully registered"
+msgid "Status successfully created"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/statuses/views.py:58
 msgid "Edit status"
 msgstr "Изменение статуса"
 
@@ -69,11 +81,15 @@ msgstr "Метки"
 msgid "Only my tasks"
 msgstr "Только свои задачи"
 
-#: task_manager/tasks/views.py:56 templates/task_manager/tasks/list.html:7
+#: task_manager/tasks/views.py:57 templates/task_manager/tasks/list.html:7
 msgid "Create task"
 msgstr "Создание задачи"
 
-#: task_manager/tasks/views.py:71
+#: task_manager/tasks/views.py:64 task_manager/users/views.py:31
+msgid "User successfully registered"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/tasks/views.py:76
 msgid "Edit task"
 msgstr "Изменение задачи"
 
@@ -83,11 +99,7 @@ msgstr "Регистрация"
 
 #: task_manager/users/views.py:26
 msgid "Sign up"
-msgstr "Зарегистрироваться"
-
-#: task_manager/users/views.py:31
-msgid "User successfully registered"
-msgstr "Пользователь успешно зарегистрирован"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/views.py:64
 msgid "Edit user"
@@ -121,7 +133,7 @@ msgstr "Задачи"
 msgid "Log out"
 msgstr "Выход"
 
-#: templates/base.html:40 templates/login.html:16 templates/login.html:28
+#: templates/base.html:40 templates/login.html:6
 msgid "Log in"
 msgstr "Вход"
 
@@ -136,6 +148,10 @@ msgstr "Практические курсы по программировани�
 #: templates/index.html:13
 msgid "Learn more"
 msgstr "Узнать больше"
+
+#: templates/login.html:18
+msgid "Enter"
+msgstr "Войти"
 
 #: templates/task_manager/labels/delete.html:5
 msgid "Label deletion"
