@@ -113,7 +113,7 @@ msgstr "Пользователь успешно изменен"
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:32
+#: task_manager/views.py:31
 msgid "You logged out"
 msgstr "Вы разлогинены"
 
