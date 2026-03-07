@@ -26,3 +26,9 @@ class LoginView(auth_views.LoginView):
 class LogoutView(auth_views.LogoutView):
     http_method_names = ["post"]
     next_page = reverse_lazy("index")
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(
+            self.request, gettext_lazy("You logged out")
+        )
+        return response

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-07 08:29+0000\n"
+"POT-Creation-Date: 2026-03-07 08:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr "Английский"
 
 #: task_manager/labels/views.py:27 templates/task_manager/labels/list.html:7
 msgid "Create label"
-msgstr "Создание метки"
+msgstr "Создать метку"
 
 #: task_manager/labels/views.py:28 task_manager/statuses/views.py:27
 #: task_manager/tasks/views.py:58
@@ -32,14 +32,12 @@ msgid "Create"
 msgstr "Создать"
 
 #: task_manager/labels/views.py:33
-#, fuzzy
-#| msgid "User successfully registered"
 msgid "Label successfully created"
-msgstr "Пользователь успешно зарегистрирован"
+msgstr "Метка успешно создана"
 
 #: task_manager/labels/views.py:52
 msgid "Edit label"
-msgstr "Изменение метки"
+msgstr "Изменить метку"
 
 #: task_manager/labels/views.py:53 task_manager/statuses/views.py:59
 #: task_manager/tasks/views.py:77 templates/task_manager/tasks/detail.html:44
@@ -53,10 +51,8 @@ msgid "Create status"
 msgstr "Создать статус"
 
 #: task_manager/statuses/views.py:32
-#, fuzzy
-#| msgid "User successfully registered"
 msgid "Status successfully created"
-msgstr "Пользователь успешно зарегистрирован"
+msgstr "Статус успешно создан"
 
 #: task_manager/statuses/views.py:58
 msgid "Edit status"
@@ -109,9 +105,17 @@ msgstr "Изменение пользователя"
 msgid "Modify"
 msgstr "Изменить"
 
+#: task_manager/users/views.py:70
+msgid "User successfully updated"
+msgstr "Пользователь успешно изменён"
+
 #: task_manager/views.py:21
 msgid "You are logged in"
 msgstr "Вы залогинены"
+
+#: task_manager/views.py:32
+msgid "You logged out"
+msgstr "Вы разлогинены"
 
 #: templates/base.html:11
 msgid "Task Tracker"

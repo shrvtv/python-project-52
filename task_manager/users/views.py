@@ -64,3 +64,9 @@ class UserUpdateView(
         "header": gettext_lazy("Edit user"),
         "submit_button_label": gettext_lazy("Modify")
         }
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(
+            self.request, gettext_lazy("User successfully updated")
+        )
+        return response
