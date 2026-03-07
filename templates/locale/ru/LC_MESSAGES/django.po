@@ -107,7 +107,7 @@ msgstr "Изменить"
 
 #: task_manager/users/views.py:70
 msgid "User successfully updated"
-msgstr "Пользователь успешно изменён"
+msgstr "Пользователь успешно изменен"
 
 #: task_manager/views.py:21
 msgid "You are logged in"
