@@ -50,7 +50,7 @@ msgstr "Изменить"
 #: task_manager/statuses/views.py:26
 #: templates/task_manager/statuses/list.html:7
 msgid "Create status"
-msgstr "Создание статуса"
+msgstr "Создать статус"
 
 #: task_manager/statuses/views.py:32
 #, fuzzy
@@ -60,7 +60,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/statuses/views.py:58
 msgid "Edit status"
-msgstr "Изменение статуса"
+msgstr "Изменить статус"
 
 #: task_manager/tasks/forms.py:14 templates/task_manager/tasks/detail.html:25
 #: templates/task_manager/tasks/list.html:26
@@ -83,7 +83,7 @@ msgstr "Только свои задачи"
 
 #: task_manager/tasks/views.py:57 templates/task_manager/tasks/list.html:7
 msgid "Create task"
-msgstr "Создание задачи"
+msgstr "Создать задачу"
 
 #: task_manager/tasks/views.py:64 task_manager/users/views.py:31
 msgid "User successfully registered"
@@ -91,7 +91,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/tasks/views.py:76
 msgid "Edit task"
-msgstr "Изменение задачи"
+msgstr "Изменить задачу"
 
 #: task_manager/users/views.py:25 templates/base.html:43
 msgid "Registration"
