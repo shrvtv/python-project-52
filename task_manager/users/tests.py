@@ -67,7 +67,7 @@ class UserCreateViewTests(UserViewTestCase):
         }
         response = self.client.post(self.url, valid_form_data)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse("users:list"))
+        self.assertRedirects(response, reverse("login"))
         self.assertTrue(User.objects.filter(username="testuser3").exists())
 
     def test_password_validation_works(self):
@@ -126,7 +126,7 @@ class UserUpdateViewTests(UserViewTestCase):
         self.assertEqual(self.user1.username, "testuser3")
         self.assertEqual(self.user1.first_name, "Mary")
         self.assertEqual(self.user1.last_name, "Sue")
-        self.assertRedirects(response, reverse("users:list"))
+        self.assertRedirects(response, reverse("login"))
 
     def test_user_can_update_only_self(self):
         self.login_as_user1()

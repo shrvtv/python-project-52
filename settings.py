@@ -23,7 +23,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = bool(os.getenv('DEBUG', 'False'))
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en'
 
 LOCALE_PATHS = [
     BASE_DIR / 'templates' / 'locale',
@@ -54,6 +54,8 @@ ROLLBAR = {
     'code_version': '1.0',
     'root': BASE_DIR,
 }
+
+FIXTURE_DIRS = [BASE_DIR / "task_manager" / "fixtures"]
 
 # Application definition
 
