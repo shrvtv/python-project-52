@@ -1,22 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from task_manager.labels.models import Label
 
 
 class LabelViewTestCase(TestCase):
-    def create_label(self, name="testlabel1"):
-        return Label.objects.create(
-            name=name,
-        )
+    fixtures = ["users.json", "labels.json"]
 
     def login_as_user(self):
-        self.user = User.objects.create_user(
-            username="testuser1", 
-            first_name="John", 
-            last_name="Doe",
-            password="testpassword1",
-        )
         self.client.login(username="testuser1", password="testpassword1")
 
 
@@ -25,7 +15,7 @@ class LabelViewRedirectTest(LabelViewTestCase):
         return f"{reverse('login')}?next={url}"
 
     def setUp(self):
-        self.label = self.create_label()
+        self.label = Label.objects.get(pk=1)
 
     def test_list(self):
         url = reverse("labels:list")
@@ -58,7 +48,6 @@ class LabelViewRedirectTest(LabelViewTestCase):
 
 class LabelListViewTests(LabelViewTestCase):
     def setUp(self):
-        self.label = self.create_label()
         self.login_as_user()
         self.response = self.client.get(reverse("labels:list"))
 
@@ -66,22 +55,20 @@ class LabelListViewTests(LabelViewTestCase):
         self.assertEqual(self.response.status_code, 200)
 
     def test_uses_correct_template(self):
-        self.assertTemplateUsed(self.response, "task_manager/labels/list.html")
+        self.assertTemplateUsed(
+            self.response,
+            "task_manager/labels/list.html"
+        )
 
     def test_shows_labels(self):
-        self.assertContains(self.response, "testlabel1")
-
-    def test_shows_multiple_labels(self):
-        self.create_label(name="testlabel2")
-        response = self.client.get(reverse("labels:list"))
-        self.assertContains(response, "testlabel1")
-        self.assertContains(response, "testlabel2")
+        self.assertContains(self.response, "January")
+        self.assertContains(self.response, "February")
 
 
 class LabelCreateViewTests(LabelViewTestCase):
     def setUp(self):
         self.url = reverse("labels:create")
-        self.label = self.create_label()
+        self.label = Label.objects.get(pk=1)
         self.login_as_user()
         self.response_get = self.client.get(self.url)
 
@@ -90,7 +77,10 @@ class LabelCreateViewTests(LabelViewTestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_uses_correct_template(self):
-        self.assertTemplateUsed(self.response_get, "task_manager/labels/form.html")
+        self.assertTemplateUsed(
+            self.response_get,
+            "task_manager/labels/form.html"
+        )
 
     def test_uses_correct_header(self):
         self.assertContains(self.response_get, "Create label")
@@ -119,8 +109,8 @@ class LabelCreateViewTests(LabelViewTestCase):
 
 class LabelUpdateViewTests(LabelViewTestCase):
     def setUp(self):
-        self.label = self.create_label()
         self.login_as_user()
+        self.label = Label.objects.get(pk=1)
         self.url = reverse("labels:update", kwargs={"pk": self.label.pk})
 
     def test_uses_correct_template(self):
@@ -149,9 +139,12 @@ class LabelUpdateViewTests(LabelViewTestCase):
 
 class LabelDeleteViewTests(LabelViewTestCase):
     def setUp(self):
-        self.label = self.create_label()
         self.login_as_user()
-        self.label_url = reverse("labels:delete", kwargs={"pk": self.label.pk})
+        self.label = Label.objects.get(pk=1)
+        self.label_url = reverse(
+            "labels:delete",
+            kwargs={"pk": self.label.pk}
+        )
 
     def test_view_uses_correct_template(self):
         response = self.client.get(self.label_url)
@@ -159,5 +152,5 @@ class LabelDeleteViewTests(LabelViewTestCase):
 
     def test_can_delete_label(self):
         response = self.client.post(self.label_url)
-        self.assertFalse(Label.objects.filter(pk=self.label.pk).exists())
+        self.assertFalse(Label.objects.filter(pk=1).exists())
         self.assertRedirects(response, reverse("labels:list"))
