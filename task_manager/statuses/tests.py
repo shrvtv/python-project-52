@@ -1,24 +1,13 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
 
 
 class StatusViewTestCase(TestCase):
-    def create_status(self):
-        return Status.objects.create(
-            name="teststatus1",
-        )
+    fixtures = ["users.json", "statuses.json"]
 
     def login_as_user(self):
-        self.user = User.objects.create_user(
-            username="testuser1", 
-            first_name="John", 
-            last_name="Doe",
-            password="testpassword1",
-        )
         self.client.login(username="testuser1", password="testpassword1")
-
 
 
 class StatusViewRedirectTest(StatusViewTestCase):
@@ -26,7 +15,7 @@ class StatusViewRedirectTest(StatusViewTestCase):
         return f"{reverse('login')}?next={url}"
 
     def setUp(self):
-        self.status = self.create_status()
+        self.status = Status.objects.get(pk=1)
 
     def test_list(self):
         url = reverse("statuses:list")
@@ -59,7 +48,6 @@ class StatusViewRedirectTest(StatusViewTestCase):
 
 class StatusListViewTests(StatusViewTestCase):
     def setUp(self):
-        self.status = self.create_status()
         self.login_as_user()
         self.response = self.client.get(reverse("statuses:list"))
 
@@ -67,16 +55,19 @@ class StatusListViewTests(StatusViewTestCase):
         self.assertEqual(self.response.status_code, 200)
 
     def test_uses_correct_template(self):
-        self.assertTemplateUsed(self.response, "task_manager/statuses/list.html")
+        self.assertTemplateUsed(
+            self.response,
+            "task_manager/statuses/list.html"
+        )
 
     def test_shows_statuses(self):
-        self.assertContains(self.response, "teststatus1")
+        self.assertContains(self.response, "backlogged")
 
 
 class StatusCreateViewTests(StatusViewTestCase):
     def setUp(self):
         self.url = reverse("statuses:create")
-        self.status = self.create_status()
+        self.status = Status.objects.get(pk=1)
         self.login_as_user()
         self.response_get = self.client.get(self.url)
 
@@ -85,7 +76,10 @@ class StatusCreateViewTests(StatusViewTestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_uses_correct_template(self):
-        self.assertTemplateUsed(self.response_get, "task_manager/statuses/form.html")
+        self.assertTemplateUsed(
+            self.response_get,
+            "task_manager/statuses/form.html"
+        )
 
     def test_uses_correct_header(self):
         self.assertContains(self.response_get, "Create status")
@@ -114,9 +108,10 @@ class StatusCreateViewTests(StatusViewTestCase):
 
 class StatusUpdateViewTests(StatusViewTestCase):
     def setUp(self):
-        self.status = self.create_status()
         self.login_as_user()
+        self.status = Status.objects.get(pk=1)
         self.url = reverse("statuses:update", kwargs={"pk": self.status.pk})
+        
 
     def test_uses_correct_template(self):
         response = self.client.get(self.url)
@@ -144,9 +139,12 @@ class StatusUpdateViewTests(StatusViewTestCase):
 
 class StatusDeleteViewTests(StatusViewTestCase):
     def setUp(self):
-        self.status = self.create_status()
         self.login_as_user()
-        self.status_url = reverse("statuses:delete", kwargs={"pk": self.status.pk})
+        self.status = Status.objects.get(pk=1)
+        self.status_url = reverse(
+            "statuses:delete",
+            kwargs={"pk": self.status.pk}
+        )
 
     def test_view_uses_correct_template(self):
         response = self.client.get(self.status_url)
@@ -154,5 +152,5 @@ class StatusDeleteViewTests(StatusViewTestCase):
 
     def test_can_delete_status(self):
         response = self.client.post(self.status_url)
-        self.assertFalse(Status.objects.filter(pk=self.status.pk).exists())
+        self.assertFalse(Status.objects.filter(pk=1).exists())
         self.assertRedirects(response, reverse("statuses:list"))
