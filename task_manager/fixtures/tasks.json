@@ -1,0 +1,14 @@
+[
+    {
+        "model": "tasks.task",
+        "pk": 1,
+        "fields": {
+            "name": "name",
+            "created_at": "2026-02-27T14:29:50.293Z",
+            "status": 1,
+            "description": "description",
+            "author": 1,
+            "executor": 2
+        }
+    }
+]
