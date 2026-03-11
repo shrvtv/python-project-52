@@ -25,7 +25,7 @@ class LoginView(auth_views.LoginView):
 
 class LogoutView(auth_views.LogoutView):
     http_method_names = ["post"]
-    next_page = reverse_lazy("index")
+    next_page = reverse_lazy("users:list")
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         messages.success(request, gettext_lazy("You logged out"))
