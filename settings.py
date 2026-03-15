@@ -15,6 +15,8 @@ from dotenv import load_dotenv
 import os
 import dj_database_url
 from django.utils.translation import gettext_lazy
+from django.contrib.messages import constants as messages
+
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / '.env')
@@ -56,6 +58,10 @@ ROLLBAR = {
 }
 
 FIXTURE_DIRS = [BASE_DIR / "task_manager" / "fixtures"]
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+}
 
 # Application definition
 
