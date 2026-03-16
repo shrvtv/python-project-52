@@ -21,6 +21,4 @@ class TaskCreationForm(forms.ModelForm):
             if name == 'description':
                 field.widget.attrs['cols'] = '40'
                 field.widget.attrs['rows'] = '10'
-            if name == 'label':
-                field.widget.attrs
             field.widget.attrs['placeholder'] = gettext(field.label)
