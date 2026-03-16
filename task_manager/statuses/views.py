@@ -3,8 +3,9 @@ import django.contrib.auth.mixins as mixins
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusCreationForm
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, gettext
 from django.contrib import messages
+from django.shortcuts import redirect
 
 app_label = "statuses"
 
@@ -34,13 +35,6 @@ class StatusCreateView(
         return response
 
 
-class StatusDeleteView(
-    StatusMixin,
-    views.DeleteView,
-):
-    template_name = "task_manager/statuses/delete.html"
-
-
 class StatusListView(
     StatusMixin,
     views.ListView,
@@ -58,3 +52,18 @@ class StatusUpdateView(
         "header": gettext_lazy("Edit status"),
         "submit_button_label": gettext_lazy("Edit")
     }
+
+
+class StatusDeleteView(
+    StatusMixin,
+    views.DeleteView,
+):
+    template_name = "task_manager/statuses/delete.html"
+    
+    def form_valid(self, form):
+        if self.get_object().tasks_assigned.exists():
+            messages.error(
+                self.request, gettext("Cannot delete a status in use")
+            )
+            return redirect("statuses:list")
+        return super().form_valid(form)

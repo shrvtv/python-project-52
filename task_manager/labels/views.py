@@ -3,8 +3,9 @@ import django.contrib.auth.mixins as mixins
 from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelCreationForm
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, gettext
 from django.contrib import messages
+from django.shortcuts import redirect
 
 
 app_label = "labels"
@@ -59,3 +60,12 @@ class LabelDeleteView(
     views.DeleteView,
 ):
     template_name = "task_manager/labels/delete.html"
+
+    def form_valid(self, form):
+        if self.get_object().tasks_assigned.exists():
+            messages.error(
+                self.request, gettext("Cannot delete a label in use")
+            )
+            return redirect("labels:list")
+        return super().form_valid(form)
+
