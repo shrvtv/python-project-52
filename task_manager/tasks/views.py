@@ -1,15 +1,16 @@
 import django.views.generic as generic
-import django.contrib.auth.mixins as auth_mixins
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, gettext
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskCreationForm
 from task_manager.tasks.filters import TaskFilter
 from django_filters.views import FilterView
+from django.shortcuts import redirect
 
 
-class TaskMixin(auth_mixins.LoginRequiredMixin):
+class TaskMixin(LoginRequiredMixin):
     model = Task
     login_url = reverse_lazy("login")
     success_url = reverse_lazy("tasks:list")
@@ -25,14 +26,15 @@ class TaskListView(
 
 class TaskDetailView(
     TaskMixin,
-    generic.DetailView
+    generic.DetailView,
 ):
     template_name = "task_manager/tasks/detail.html"
 
 
 class TaskCreateView(
     TaskMixin,
-    generic.CreateView):
+    generic.CreateView,
+):
     form_class = TaskCreationForm
     template_name = "task_manager/tasks/form.html"
     extra_context = {
@@ -50,8 +52,8 @@ class TaskCreateView(
 
 class TaskUpdateView(
     TaskMixin,
-    generic.UpdateView
-    ):
+    generic.UpdateView,
+):
     form_class = TaskCreationForm
     template_name = "task_manager/tasks/form.html"
     extra_context = {
@@ -63,9 +65,16 @@ class TaskUpdateView(
 
 class TaskDeleteView(
     TaskMixin,
-    auth_mixins.UserPassesTestMixin,
-    generic.DeleteView
+    UserPassesTestMixin,
+    generic.DeleteView,
 ):
     template_name = "task_manager/tasks/delete.html"
+
     def test_func(self):
         return self.get_object().author == self.request.user
+    
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect(self.login_url)
+        messages.error(self.request, gettext("Only owner can delete the task"))
+        return redirect("tasks:list")
