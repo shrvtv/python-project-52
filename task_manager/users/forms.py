@@ -9,13 +9,16 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+        fields = (
+            'first_name',
+            'last_name',
+            'username',
+            'password1',
+            'password2',
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["username"].label = gettext_lazy("Username")
-        self.fields["password1"].label = gettext_lazy("Password")
-        self.fields["password2"].label = gettext_lazy("Password confirmation")
         for field in self.fields.values():
             field.widget.attrs["class"] = "form-control"
             field.widget.attrs["required"] = ""
