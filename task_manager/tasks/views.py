@@ -43,11 +43,10 @@ class TaskCreateView(
     }
     def form_valid(self, form):
         form.instance.author = self.request.user
-        response = super().form_valid(form)
         messages.success(
-            self.request, gettext_lazy("User successfully registered")
+            self.request, gettext_lazy("Task successfully created")
         )
-        return response
+        return super().form_valid(form)
 
 
 class TaskUpdateView(
