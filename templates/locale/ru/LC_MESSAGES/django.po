@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 13:22+0000\n"
+"POT-Creation-Date: 2026-03-17 13:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,7 +186,11 @@ msgstr "Пользователь успешно изменен"
 msgid "Cannot delete a user linked to tasks"
 msgstr "Невозможно удалить пользователя, потому что он связан с задачей"
 
-#: task_manager/users/views.py:96
+#: task_manager/users/views.py:92
+msgid "User successfully deleted"
+msgstr "Пользователь успешно удален"
+
+#: task_manager/users/views.py:99
 msgid "You cannot delete another user"
 msgstr "Вы не можете удалить другого пользователя"
 
@@ -311,3 +315,6 @@ msgstr "Удаление пользователя"
 #: templates/task_manager/users/list.html:12
 msgid "Full name"
 msgstr "Полное имя"
+
+#~ msgid "Пользователь успешно удален"
+#~ msgstr "Пользователь успешно удален"
