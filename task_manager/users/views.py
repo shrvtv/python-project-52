@@ -40,35 +40,10 @@ class UserCreateView(
         return super().form_valid(form)
 
 
-class UserDeleteView(
-    UserMixin,
-    OnlyOwnerMixin,
-    generic_views.DeleteView,
-):
-    success_url = reverse_lazy("index")
-    template_name = "task_manager/users/delete.html"
-
-    def form_valid(self, form):
-        user = self.get_object()
-        if user.tasks_authored.exists() or user.tasks_executing.exists():
-            messages.error(
-                self.request, gettext("Cannot delete a user linked to tasks")
-            )
-            return redirect("users:list")
-        return super().form_valid(form)
-
-    def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            return redirect(self.login_url)
-        messages.error(self.request, gettext("You cannot delete another user"))
-        return redirect("users:list")
-
-
 class UserListView(
     UserMixin,
     generic_views.ListView,
     ):
-    success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/list.html"
 
 
@@ -96,3 +71,27 @@ class UserUpdateView(
             self.request, gettext("User successfully updated")
         )
         return super().form_valid(form)
+
+
+class UserDeleteView(
+    UserMixin,
+    OnlyOwnerMixin,
+    generic_views.DeleteView,
+):
+    success_url = reverse_lazy("index")
+    template_name = "task_manager/users/delete.html"
+
+    def form_valid(self, form):
+        user = self.get_object()
+        if user.tasks_authored.exists() or user.tasks_executing.exists():
+            messages.error(
+                self.request, gettext("Cannot delete a user linked to tasks")
+            )
+            return redirect("users:list")
+        return super().form_valid(form)
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect(self.login_url)
+        messages.error(self.request, gettext("You cannot delete another user"))
+        return redirect("users:list")
