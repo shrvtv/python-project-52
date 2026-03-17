@@ -71,5 +71,6 @@ class LabelDeleteView(
                 self.request, gettext("Cannot delete a label in use")
             )
             return redirect("labels:list")
+        messages.success(self.request, gettext("Label successfully deleted"))
         return super().form_valid(form)
 

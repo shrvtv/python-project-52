@@ -70,4 +70,5 @@ class StatusDeleteView(
                 self.request, gettext("Cannot delete a status in use")
             )
             return redirect("statuses:list")
+        messages.success(self.request, gettext("Status successfully deleted"))
         return super().form_valid(form)
