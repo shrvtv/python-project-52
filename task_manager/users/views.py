@@ -53,7 +53,7 @@ class UserUpdateView(
     generic_views.UpdateView,
 ):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("users:list")
     template_name = "task_manager/users/form.html"
     extra_context = {
         "header": gettext_lazy("Edit user"),
