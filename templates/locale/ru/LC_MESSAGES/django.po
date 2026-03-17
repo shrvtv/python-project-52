@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 12:35+0000\n"
+"POT-Creation-Date: 2026-03-17 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,19 +134,23 @@ msgstr "Задача успешно изменена"
 msgid "Only owner can delete the task"
 msgstr "Задачу может удалить только ее автор"
 
-#: task_manager/users/forms.py:7
+#: task_manager/users/forms.py:17
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/users/forms.py:8
+#: task_manager/users/forms.py:18
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/users/forms.py:31 templates/task_manager/users/list.html:11
+#: task_manager/users/forms.py:37
+msgid "A user with that username already exists."
+msgstr "Пользователь с таким никнеймом уже существует."
+
+#: task_manager/users/forms.py:45 templates/task_manager/users/list.html:11
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/users/forms.py:32
+#: task_manager/users/forms.py:46
 msgid "Password"
 msgstr "Пароль"
 
@@ -162,29 +166,29 @@ msgstr "Зарегистрировать"
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/users/views.py:55
-msgid "Cannot delete a user linked to tasks"
-msgstr "Невозможно удалить метку, потому что он связан с задачей"
-
-#: task_manager/users/views.py:63
-msgid "You cannot delete another user"
-msgstr "Вы не можете удалить другого пользователя"
-
-#: task_manager/users/views.py:84
+#: task_manager/users/views.py:59
 msgid "Edit user"
 msgstr "Изменение пользователя"
 
-#: task_manager/users/views.py:85
+#: task_manager/users/views.py:60
 msgid "Modify"
 msgstr "Изменить"
 
-#: task_manager/users/views.py:91
+#: task_manager/users/views.py:66
 msgid "You cannot edit another user"
 msgstr "Вы не можете изменить другого пользователя"
 
-#: task_manager/users/views.py:96
+#: task_manager/users/views.py:71
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
+
+#: task_manager/users/views.py:88
+msgid "Cannot delete a user linked to tasks"
+msgstr "Невозможно удалить пользователя, потому что он связан с задачей"
+
+#: task_manager/users/views.py:96
+msgid "You cannot delete another user"
+msgstr "Вы не можете удалить другого пользователя"
 
 #: task_manager/views.py:21
 msgid "You are logged in"
