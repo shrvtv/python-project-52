@@ -88,6 +88,9 @@ class UserDeleteView(
                 self.request, gettext("Cannot delete a user linked to tasks")
             )
             return redirect("users:list")
+        messages.success(
+                self.request, gettext("User successfully deleted")
+            )
         return super().form_valid(form)
 
     def handle_no_permission(self):
