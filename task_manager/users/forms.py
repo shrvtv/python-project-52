@@ -28,7 +28,7 @@ class CustomUserCreationForm(StyleMixin, UserCreationForm):
         )
 
 
-class CustomUserUpdateForm(StyleMixin, CustomUserCreationForm):
+class CustomUserUpdateForm(CustomUserCreationForm):
     def clean_username(self):
         username = self.cleaned_data["username"]
         qs = User.objects.exclude(pk=self.instance.pk)
