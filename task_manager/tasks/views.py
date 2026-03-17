@@ -16,21 +16,6 @@ class TaskMixin(LoginRequiredMixin):
     success_url = reverse_lazy("tasks:list")
 
 
-class TaskListView(
-    TaskMixin,
-    FilterView,
-):
-    template_name = "task_manager/tasks/list.html"
-    filterset_class = TaskFilter
-
-
-class TaskDetailView(
-    TaskMixin,
-    generic.DetailView,
-):
-    template_name = "task_manager/tasks/detail.html"
-
-
 class TaskCreateView(
     TaskMixin,
     generic.CreateView,
@@ -49,6 +34,21 @@ class TaskCreateView(
         return super().form_valid(form)
 
 
+class TaskListView(
+    TaskMixin,
+    FilterView,
+):
+    template_name = "task_manager/tasks/list.html"
+    filterset_class = TaskFilter
+
+
+class TaskDetailView(
+    TaskMixin,
+    generic.DetailView,
+):
+    template_name = "task_manager/tasks/detail.html"
+
+
 class TaskUpdateView(
     TaskMixin,
     generic.UpdateView,
@@ -59,7 +59,11 @@ class TaskUpdateView(
         "header": gettext_lazy("Edit task"),
         "submit_button_label": gettext_lazy("Edit")
     }
-    
+    def form_valid(self, form):
+        messages.success(
+            self.request, gettext_lazy("Task successfully updated")
+        )
+        return super().form_valid(form)
 
 
 class TaskDeleteView(

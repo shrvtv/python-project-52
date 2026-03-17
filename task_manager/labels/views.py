@@ -29,11 +29,10 @@ class LabelCreateView(
         "submit_button_label": gettext_lazy("Create")
     }
     def form_valid(self, form):
-        response = super().form_valid(form)
         messages.success(
             self.request, gettext_lazy("Label successfully created")
         )
-        return response
+        return super().form_valid(form)
 
 
 class LabelListView(
@@ -53,6 +52,11 @@ class LabelUpdateView(
         "header": gettext_lazy("Edit label"),
         "submit_button_label": gettext_lazy("Edit")
     }
+    def form_valid(self, form):
+        messages.success(
+            self.request, gettext_lazy("Label successfully updated")
+        )
+        return super().form_valid(form)
 
 
 class LabelDeleteView(

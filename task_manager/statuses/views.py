@@ -28,11 +28,10 @@ class StatusCreateView(
         "submit_button_label": gettext_lazy("Create")
     }
     def form_valid(self, form):
-        response = super().form_valid(form)
         messages.success(
             self.request, gettext_lazy("Status successfully created")
         )
-        return response
+        return super().form_valid(form)
 
 
 class StatusListView(
@@ -52,6 +51,11 @@ class StatusUpdateView(
         "header": gettext_lazy("Edit status"),
         "submit_button_label": gettext_lazy("Edit")
     }
+    def form_valid(self, form):
+        messages.success(
+            self.request, gettext_lazy("Status successfully updated")
+        )
+        return super().form_valid(form)
 
 
 class StatusDeleteView(
