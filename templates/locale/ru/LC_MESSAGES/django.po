@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 10:05+0000\n"
+"POT-Creation-Date: 2026-03-17 12:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,6 +60,10 @@ msgstr "Метка успешно изменена"
 msgid "Cannot delete a label in use"
 msgstr "Невозможно удалить метку, потому что она используется"
 
+#: task_manager/labels/views.py:74
+msgid "Label successfully deleted"
+msgstr "Метка успешно удалена"
+
 #: task_manager/statuses/views.py:27
 #: templates/task_manager/statuses/list.html:7
 msgid "Create status"
@@ -80,6 +84,10 @@ msgstr "Статус успешно изменен"
 #: task_manager/statuses/views.py:70
 msgid "Cannot delete a status in use"
 msgstr "Невозможно удалить статус, потому что он используется"
+
+#: task_manager/statuses/views.py:73
+msgid "Status successfully deleted"
+msgstr "Статус успешно удален"
 
 #: task_manager/tasks/filters.py:18 task_manager/tasks/forms.py:13
 #: templates/task_manager/tasks/detail.html:25
