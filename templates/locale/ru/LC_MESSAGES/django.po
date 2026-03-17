@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-16 20:08+0000\n"
+"POT-Creation-Date: 2026-03-17 10:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,25 +34,29 @@ msgid "Create label"
 msgstr "Создать метку"
 
 #: task_manager/labels/views.py:29 task_manager/statuses/views.py:28
-#: task_manager/tasks/views.py:42
+#: task_manager/tasks/views.py:27
 msgid "Create"
 msgstr "Создать"
 
-#: task_manager/labels/views.py:34
+#: task_manager/labels/views.py:33
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: task_manager/labels/views.py:53
+#: task_manager/labels/views.py:52
 msgid "Edit label"
 msgstr "Изменить метку"
 
-#: task_manager/labels/views.py:54 task_manager/statuses/views.py:53
+#: task_manager/labels/views.py:53 task_manager/statuses/views.py:52
 #: task_manager/tasks/views.py:60 templates/task_manager/tasks/detail.html:44
 #: templates/task_manager/tasks/list.html:54
 msgid "Edit"
 msgstr "Изменить"
 
-#: task_manager/labels/views.py:67
+#: task_manager/labels/views.py:57
+msgid "Label successfully updated"
+msgstr "Метка успешно изменена"
+
+#: task_manager/labels/views.py:71
 msgid "Cannot delete a label in use"
 msgstr "Невозможно удалить метку, потому что она используется"
 
@@ -61,15 +65,19 @@ msgstr "Невозможно удалить метку, потому что он
 msgid "Create status"
 msgstr "Создать статус"
 
-#: task_manager/statuses/views.py:33
+#: task_manager/statuses/views.py:32
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: task_manager/statuses/views.py:52
+#: task_manager/statuses/views.py:51
 msgid "Edit status"
 msgstr "Изменить статус"
 
-#: task_manager/statuses/views.py:66
+#: task_manager/statuses/views.py:56
+msgid "Status successfully updated"
+msgstr "Статус успешно изменён"
+
+#: task_manager/statuses/views.py:70
 msgid "Cannot delete a status in use"
 msgstr "Невозможно удалить статус, потому что он используется"
 
@@ -98,11 +106,11 @@ msgstr "Только свои задачи"
 msgid "Description"
 msgstr "Описание"
 
-#: task_manager/tasks/views.py:41 templates/task_manager/tasks/list.html:7
+#: task_manager/tasks/views.py:26 templates/task_manager/tasks/list.html:7
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/tasks/views.py:47
+#: task_manager/tasks/views.py:32
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
@@ -110,9 +118,13 @@ msgstr "Задача успешно создана"
 msgid "Edit task"
 msgstr "Изменить задачу"
 
-#: task_manager/tasks/views.py:78
+#: task_manager/tasks/views.py:64
+msgid "Task successfully updated"
+msgstr "Задача успешно изменена"
+
+#: task_manager/tasks/views.py:82
 msgid "Only owner can delete the task"
-msgstr "Только создатель может удалить задачу"
+msgstr "Задачу может удалить только ее автор"
 
 #: task_manager/users/forms.py:7
 msgid "First name"
