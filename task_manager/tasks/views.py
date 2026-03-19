@@ -29,7 +29,7 @@ class TaskCreateView(
     def form_valid(self, form):
         form.instance.author = self.request.user
         messages.success(
-            self.request, gettext_lazy("Task successfully created")
+            self.request, gettext("Task successfully created")
         )
         return super().form_valid(form)
 
@@ -61,7 +61,7 @@ class TaskUpdateView(
     }
     def form_valid(self, form):
         messages.success(
-            self.request, gettext_lazy("Task successfully updated")
+            self.request, gettext("Task successfully updated")
         )
         return super().form_valid(form)
 
@@ -72,6 +72,12 @@ class TaskDeleteView(
     generic.DeleteView,
 ):
     template_name = "task_manager/tasks/delete.html"
+
+    def form_valid(self, form):
+        messages.success(
+            self.request, gettext("Task successfully deleted")
+        )
+        return super().form_valid(form)
 
     def test_func(self):
         return self.get_object().author == self.request.user
