@@ -19,6 +19,9 @@ class TaskCreationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         selectors = ('status', 'executor', 'labels')
         mandatory = ('name', 'status')
+        self.fields["executor"].label_from_instance = (
+            lambda user: user.get_full_name()
+        )
         for name, field in self.fields.items():
             field.widget.attrs['class'] = (
                 'form-select' if name in selectors else 'form-control'
