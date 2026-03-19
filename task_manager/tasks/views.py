@@ -1,13 +1,14 @@
 import django.views.generic as generic
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
 from django.contrib import messages
-from django.utils.translation import gettext_lazy, gettext
-from task_manager.tasks.models import Task
-from task_manager.tasks.forms import TaskCreationForm
-from task_manager.tasks.filters import TaskFilter
-from django_filters.views import FilterView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext, gettext_lazy
+from django_filters.views import FilterView
+
+from task_manager.tasks.filters import TaskFilter
+from task_manager.tasks.forms import TaskCreationForm
+from task_manager.tasks.models import Task
 
 
 class TaskMixin(LoginRequiredMixin):
@@ -26,6 +27,7 @@ class TaskCreateView(
         "header": gettext_lazy("Create task"),
         "submit_button_label": gettext_lazy("Create")
     }
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         messages.success(
@@ -59,6 +61,7 @@ class TaskUpdateView(
         "header": gettext_lazy("Edit task"),
         "submit_button_label": gettext_lazy("Edit")
     }
+
     def form_valid(self, form):
         messages.success(
             self.request, gettext("Task successfully updated")

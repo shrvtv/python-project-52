@@ -1,5 +1,6 @@
-import task_manager.users.views as user_views
 from django.urls import path
+
+import task_manager.users.views as user_views
 
 app_name = "users"
 

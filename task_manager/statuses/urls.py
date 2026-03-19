@@ -1,5 +1,6 @@
-import task_manager.statuses.views as status_views
 from django.urls import path
+
+import task_manager.statuses.views as status_views
 
 app_name = "statuses"
 

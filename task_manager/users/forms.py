@@ -1,7 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-from django.utils.translation import gettext_lazy, gettext
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
+from django.utils.translation import gettext, gettext_lazy
 
 
 class StyleMixin:

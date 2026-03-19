@@ -1,12 +1,12 @@
-import django.views.generic as views
 import django.contrib.auth.mixins as mixins
-from task_manager.labels.models import Label
-from task_manager.labels.forms import LabelCreationForm
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy, gettext
+import django.views.generic as views
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext, gettext_lazy
 
+from task_manager.labels.forms import LabelCreationForm
+from task_manager.labels.models import Label
 
 app_label = "labels"
 
@@ -14,6 +14,7 @@ app_label = "labels"
 class LabelMixin(mixins.LoginRequiredMixin):
     model = Label
     login_url = reverse_lazy("login")
+
     def get_success_url(self):
         return reverse_lazy("labels:list")
 
@@ -28,6 +29,7 @@ class LabelCreateView(
         "header": gettext_lazy("Create label"),
         "submit_button_label": gettext_lazy("Create")
     }
+
     def form_valid(self, form):
         messages.success(
             self.request, gettext_lazy("Label successfully created")
@@ -52,6 +54,7 @@ class LabelUpdateView(
         "header": gettext_lazy("Edit label"),
         "submit_button_label": gettext_lazy("Edit")
     }
+
     def form_valid(self, form):
         messages.success(
             self.request, gettext_lazy("Label successfully updated")

@@ -1,6 +1,8 @@
 from django import forms
 from django.utils.translation import gettext, gettext_lazy
+
 from task_manager.labels.models import Label
+
 
 class LabelCreationForm(forms.ModelForm):
     class Meta:

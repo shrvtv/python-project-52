@@ -1,5 +1,6 @@
-import task_manager.tasks.views as views
 from django.urls import path
+
+import task_manager.tasks.views as views
 
 app_name = "tasks"
 

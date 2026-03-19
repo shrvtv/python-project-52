@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+
 from task_manager.statuses.models import Status
 
 
@@ -112,7 +113,6 @@ class StatusUpdateViewTests(StatusViewTestCase):
         self.status = Status.objects.get(pk=1)
         self.url = reverse("statuses:update", kwargs={"pk": self.status.pk})
         
-
     def test_uses_correct_template(self):
         response = self.client.get(self.url)
         self.assertTemplateUsed(response, "task_manager/statuses/form.html")

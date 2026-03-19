@@ -1,6 +1,7 @@
 from django import forms
-from task_manager.tasks.models import Task
 from django.utils.translation import gettext, gettext_lazy
+
+from task_manager.tasks.models import Task
 
 
 class TaskCreationForm(forms.ModelForm):

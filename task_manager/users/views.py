@@ -1,10 +1,11 @@
-import django.views.generic as generic_views
-from django.contrib.auth.models import User
-from django.urls import reverse_lazy
 import django.contrib.auth.mixins as mixins
-from django.utils.translation import gettext_lazy, gettext
+import django.views.generic as generic_views
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext, gettext_lazy
+
 from task_manager.users.forms import CustomUserCreationForm
 
 

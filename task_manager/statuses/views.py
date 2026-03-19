@@ -1,11 +1,12 @@
-import django.views.generic as views
 import django.contrib.auth.mixins as mixins
-from task_manager.statuses.models import Status
-from task_manager.statuses.forms import StatusCreationForm
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy, gettext
+import django.views.generic as views
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext, gettext_lazy
+
+from task_manager.statuses.forms import StatusCreationForm
+from task_manager.statuses.models import Status
 
 app_label = "statuses"
 
@@ -13,6 +14,7 @@ app_label = "statuses"
 class StatusMixin(mixins.LoginRequiredMixin):
     model = Status
     login_url = reverse_lazy("login")
+
     def get_success_url(self):
         return reverse_lazy("statuses:list")
 
@@ -27,6 +29,7 @@ class StatusCreateView(
         "header": gettext_lazy("Create status"),
         "submit_button_label": gettext_lazy("Create")
     }
+
     def form_valid(self, form):
         messages.success(
             self.request, gettext_lazy("Status successfully created")
@@ -51,6 +54,7 @@ class StatusUpdateView(
         "header": gettext_lazy("Edit status"),
         "submit_button_label": gettext_lazy("Edit")
     }
+
     def form_valid(self, form):
         messages.success(
             self.request, gettext_lazy("Status successfully updated")

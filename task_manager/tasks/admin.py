@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Task, TaskLabel
 
+from .models import Task, TaskLabel
 
 admin.site.register(Task)
 admin.site.register(TaskLabel)
