@@ -39,6 +39,9 @@ class TaskFilter(filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.form.fields["executor"].label_from_instance = (
+            lambda user: user.get_full_name()
+        )
         for name, field in self.form.fields.items():
             if name == "self_tasks":
                 field.widget.attrs['class'] = "form-check-input mr-3"
