@@ -46,7 +46,9 @@ class UserCreateViewTests(UserViewTestCase):
         self.assertEqual(self.response_get.status_code, 200)
 
     def test_uses_correct_template(self):
-        self.assertTemplateUsed(self.response_get, "task_manager/users/form.html")
+        self.assertTemplateUsed(
+            self.response_get, "task_manager/users/form.html"
+        )
 
     def test_uses_correct_header(self):
         self.assertContains(self.response_get, "Registration")

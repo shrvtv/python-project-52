@@ -72,7 +72,9 @@ class TaskCreateViewTests(TaskViewTestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_uses_correct_template(self):
-        self.assertTemplateUsed(self.response_get, "task_manager/tasks/form.html")
+        self.assertTemplateUsed(
+            self.response_get, "task_manager/tasks/form.html"
+        )
 
     def test_uses_correct_header(self):
         self.assertContains(self.response_get, "Create task")
