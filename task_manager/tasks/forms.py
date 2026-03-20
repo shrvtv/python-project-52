@@ -4,7 +4,7 @@ from django.utils.translation import gettext, gettext_lazy
 from task_manager.tasks.models import Task
 
 
-class TaskCreationForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ('name', 'description', 'status', 'executor', 'labels')

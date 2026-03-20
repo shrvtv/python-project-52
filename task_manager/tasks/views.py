@@ -7,7 +7,7 @@ from django.utils.translation import gettext, gettext_lazy
 from django_filters.views import FilterView
 
 from task_manager.tasks.filters import TaskFilter
-from task_manager.tasks.forms import TaskCreationForm
+from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
 
 
@@ -21,7 +21,7 @@ class TaskCreateView(
     TaskMixin,
     generic.CreateView,
 ):
-    form_class = TaskCreationForm
+    form_class = TaskForm
     template_name = "task_manager/tasks/form.html"
     extra_context = {
         "header": gettext_lazy("Create task"),
@@ -55,7 +55,7 @@ class TaskUpdateView(
     TaskMixin,
     generic.UpdateView,
 ):
-    form_class = TaskCreationForm
+    form_class = TaskForm
     template_name = "task_manager/tasks/form.html"
     extra_context = {
         "header": gettext_lazy("Edit task"),
