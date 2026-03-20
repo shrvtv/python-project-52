@@ -6,6 +6,7 @@
 This project is alive, maintained and can be visited at:
 [https://python-project-52-7r1i.onrender.com](https://python-project-52-7r1i.onrender.com)
 
+# Task Manager
 
 Task Manager is just what it sounds like: a task manager. You can:
 - Onboard your team
@@ -18,8 +19,7 @@ Task Manager is just what it sounds like: a task manager. You can:
 ### Tech stack
 - Python
 - Django + Django ORM
-- Git
-- PostgreSQL via ORM
+- PostgreSQL
 - Bootstrap 5
 
 #### Libraries used
