@@ -38,9 +38,9 @@ LANGUAGES = [
 
 ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'localhost']
 
-render_host = os.getenv("RENDER_EXTERNAL_HOSTNAME")
-if render_host:
-    ALLOWED_HOSTS.append(render_host)
+external_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if external_hostname:
+    ALLOWED_HOSTS.append(external_hostname)
 
 AUTH_USER_MODEL = 'auth.User'
 
